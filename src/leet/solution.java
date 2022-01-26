@@ -1,6 +1,19 @@
 package leet;
 
-import java.util.List;
+import java.util.*;
+
+class TreeNode {
+       int val;
+       TreeNode left;
+       TreeNode right;
+       TreeNode() {}
+       TreeNode(int val) { this.val = val; }
+       TreeNode(int val, TreeNode left, TreeNode right) {
+           this.val = val;
+           this.left = left;
+           this.right = right;
+       }
+   }
 
 class ListNode {
        int val;
@@ -83,6 +96,35 @@ public class solution {
         }
         return true;
     }
+    public List<Integer> getAllElements(TreeNode root1, TreeNode root2) {
+        List<Integer> ret = new ArrayList<>();
+        Stack<TreeNode> st = new Stack<>();
+        while(root1 != null || !st.empty()){
+            while(root1 != null){
+                st.push(root1);
+                root1 = root1.left;
+            }
+            root1 = st.peek();
+            st.pop();
+            ret.add(root1.val);
+            root1 = root1.right;
+        }
+        st = new Stack<>();
+        while(root2 != null || !st.empty()){
+            while(root2 != null){
+                st.push(root2);
+                root2 = root2.left;
+            }
+            root2 = st.peek();
+            st.pop();
+            ret.add(root2.val);
+            root2 = root2.right;
+        }
+        Collections.sort(ret);
+        return ret;
+    }
     public List<Integer> sequentialDigits(int low, int high) {
+        List<Integer> ret = new ArrayList<>();
+        return ret;
     }
 }
